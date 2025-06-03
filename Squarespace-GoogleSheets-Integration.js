@@ -131,6 +131,31 @@ function sendTemplateEmailOfResponse() {
   });
 }
 
+// Function to handle submission of email to list upon approval (as a change to the sheet)
+function onEdit(e) {
+  // Get the row of the change
+  const sheet = e.range.getSheet();
+  const approvedRow = e.range.getRow();
+  const lastCol = sheet.getLastColumn();
+  const approvedRowValues = sheet.getRange(approvedRow, 1, 1, lastCol).getValues()[0];
+
+  // Create the Email Body
+
+  // Get the List of Recipients (Array of Strings)
+
+  // Send Email
+  MailApp.sendEmail({
+    to: '', // Replace with the recipients' email address; comma separated list for multiple, use join on array
+    subject: 'Form Response',
+    htmlBody: body
+  });
+
+
+
+  Logger.log("Edited cell: " + range.getA1Notation() + ", value: " + value);
+  Logger.log("Approved Row:" + approvedRowValues.join(", "));
+}
+
 // Custom JS for Squarespace Code Block
 // This code uses Handlebars.js and Sheetrock.js to fetch and display data from a Google Spreadsheet
 var mySpreadsheet = ""; // Replace with your Google Spreadsheet URL
